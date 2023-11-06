@@ -51,20 +51,21 @@ export function ProductDialog({ isOpen, onOpenChange, product }: ProductDialogPr
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="flex sm:max-w-[825px] rounded-2xl">
-        <DialogHeader>
-          <div className="flex items-start gap-2">
+      <DialogContent className="flex sm:max-w-[425px] rounded-2xl">
+        <div className="flex flex-col gap-4 py-4">
+          <div className="flex items-start justify-between gap-2">
             <DialogTitle>{product?.title}</DialogTitle>
             <Badge className="w-fit text-center bg-slate-500">{product?.category?.toUpperCase()}</Badge>
           </div>
           <DialogDescription>
-          {product?.description}
+            {product?.description}
           </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="w-[300px] h-[300px]">
-            <img loading="lazy" src={product?.image} alt="" className="w-full h-full object-cover rounded-2xl hover:object-contain transition-all" />
+
+          <div className="flex items-center w-full h-[300px]">
+            <img loading="lazy" src={product?.image} alt="" className="w-full h-full m-auto object-cover rounded-2xl hover:object-contain transition-all" />
           </div>
+
+          <Badge className="w-fit text-center bg-emerald-500 self-end">${product.price}</Badge>
 
           <div className="w-full flex gap-2 justify-between">
             <Button type="button" className="space-x-2 bg-red-500 text-white">
@@ -73,8 +74,8 @@ export function ProductDialog({ isOpen, onOpenChange, product }: ProductDialogPr
             
             <Button onClick={handleAddToCart} type="button" className="space-x-2">
               <ShoppingCartIcon />
-              <span>Add to Cart</span>
-              {`(${cartItems?.find((p) => p.id === product.id)?.quantity || 0})`}
+              <span>Buy</span>
+              {cartItems?.find((p) => p.id === product.id) && `(${cartItems?.find((p) => p.id === product.id)?.quantity || 0})`}
             </Button>
           </div>
         </div>

@@ -22,7 +22,7 @@ export default function Home() {
     queryKey: ['products'],
     queryFn: () =>
     productsController.get({
-      limit: 10
+      limit: 10,
     }),
   })
 
@@ -41,7 +41,9 @@ export default function Home() {
     <div className="flex container min-h-screen flex-col items-center justify-between gap-8">
       <Header />
 
-      <motion.div 
+      <Separator />
+
+      {/* <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
@@ -65,11 +67,11 @@ export default function Home() {
 
         <img src='/home-pic.jpg' alt="Home Pic" className='rounded-2xl border-r-8 border-b-4 border-b-yellow-600 border-r-yellow-700' />
       </section>
-      </motion.div>
+      </motion.div> */}
 
-      <section className="flex flex-col gap-4">
+      <section className="flex flex-col gap-4 items-center">
         <h1 className='font-extrabold text-xl'>See Our Products</h1>
-        <div className='flex flex-wrap gap-4 bg-slate-900 p-4 rounded-2xl'>
+        <div className='flex flex-wrap justify-center gap-4 p-4 rounded-2xl'>
           {products?.map((product) => (
             <ProductCard onClick={() => handleProduct(product)} key={product.id} product={product} />
           ))}
@@ -78,7 +80,7 @@ export default function Home() {
 
       <Separator />
 
-      {categories?.slice(0, 2).map((category) => (
+      {/* {categories?.slice(0, 2).map((category) => (
         <section key={category} className='flex flex-col p-4 gap-4 w-full'>
           <h1 className='font-extrabold text-xl'>— {category.toUpperCase()}</h1>
           <div className='flex gap-4 overflow-x-scroll bg-slate-900 p-4 rounded-2xl'>
@@ -93,7 +95,7 @@ export default function Home() {
             See All Products
           </Link> 
         </section>  
-      ))}  
+      ))}   */}
 
       <footer
         className="flex w-full flex-col items-center bg-gray-900 text-center text-white rounded-t-2xl">
