@@ -3,7 +3,7 @@
 A simple e-commerce page with some functions like list and open products, add or remove to cart.
 
 <h1 align="center">
-  <img width="900px" alt="Imagem da aplicação" src="github/home.PNG" />
+  <img width="900px" alt="Imagem da aplicação" src="github/home.png" />
 </h1>
 
 <br>
@@ -41,11 +41,11 @@ pnpm dev
 ```
 
 <h1 align="center">
-    <img width="900px" alt="Buy Dialog Image" src="github/buy-dialog.PNG" />
+    <img width="900px" alt="Buy Dialog Image" src="github/buy-dialog.png" />
 </h1>
 
 <h1 align="center">
-    <img width="900px" alt="Cart Popover Image" src="github/cart-popover.PNG" />
+    <img width="900px" alt="Cart Popover Image" src="github/cart-popover.png " />
 </h1>
 
 ## 🌐 Live preview
