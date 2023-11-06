@@ -11,11 +11,12 @@ import { Product } from "@/model/products"
 
 interface ProductCardProps {
   product: Product
+  onClick: () => void
 }
 
-export function ShortProductCard({ product }: ProductCardProps) {
+export function ShortProductCard({ product, onClick }: ProductCardProps) {
   return (
-    <Card className="flex flex-col border w-full justify-between hover:bg-accent transition-all cursor-pointer rounded-2xl">
+    <Card onClick={onClick} className="flex flex-col border w-full justify-between bg-accent hover:bg-background transition-all cursor-pointer rounded-2xl">
       <CardHeader className="pb-0">
         <CardTitle title={product.title} className="text-sm">{product.title.substring(0, 20)}...</CardTitle>        
       </CardHeader>

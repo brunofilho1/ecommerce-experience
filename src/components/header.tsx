@@ -13,10 +13,11 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { StoreIcon } from "lucide-react"
+import { HeartIcon, ShoppingCartIcon, StoreIcon } from "lucide-react"
 import { UserNav } from "./user-nav"
 import { useQuery } from "@tanstack/react-query"
 import { productsController } from "@/controller/products-controller"
+import { Button } from "./ui/button"
 
 export function Header() {
   const { data: categories } = useQuery({
@@ -31,7 +32,8 @@ export function Header() {
       <StoreIcon size={20} />
       E-commerce
     </Link>
-      <NavigationMenu>
+
+    <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="bg-accent">Getting started</NavigationMenuTrigger>
@@ -83,7 +85,18 @@ export function Header() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-    <UserNav />
+
+    <div className="flex space-x-2 items-center">
+      <Button variant='ghost' size='icon'>
+        <HeartIcon size={20} />
+      </Button>
+
+      <Button variant='ghost' size='icon'>
+        <ShoppingCartIcon size={20} />
+      </Button>
+
+      <UserNav />
+    </div>
   </header>    
   )
 }

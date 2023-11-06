@@ -12,11 +12,12 @@ import Image from "next/image"
 
 interface ProductCardProps {
   product: Product
+  onClick: () => void
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, onClick }: ProductCardProps) {
   return (
-    <Card className="max-w-[200px] max-h-[300px] flex flex-col justify-between hover:bg-accent transition-all cursor-pointer rounded-2xl">
+    <Card onClick={onClick} className="max-w-[200px] max-h-[300px] flex flex-col justify-between bg-accent hover:bg-background transition-all cursor-pointer rounded-2xl">
       <CardHeader>
         <CardTitle title={product.title}>{product.title.substring(0, 20)}...</CardTitle>        
       </CardHeader>

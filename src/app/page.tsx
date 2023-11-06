@@ -1,16 +1,22 @@
 'use client'
 
 import { Header } from '@/components/header'
+import { ProductDialog } from '@/components/product-dialog'
 import { ProductCard } from '@/components/products-card'
 import { ShortProductCard } from '@/components/short-products-card'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { productsController } from '@/controller/products-controller'
 import { cn } from '@/lib/utils'
+import { Product } from '@/model/products'
 import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Home() {
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState({} as Product)
+
   const { data: products } = useQuery({
     queryKey: ['products'],
     queryFn: () =>
@@ -24,6 +30,11 @@ export default function Home() {
     queryFn: () =>
     productsController.getCategories(),
   })
+
+  const handleProduct = (product: Product) => {
+    setSelectedProduct(product)
+    setDialogOpen(!dialogOpen)
+  }
   
   return (
     <div className="flex container min-h-screen flex-col items-center justify-between gap-8">
@@ -33,7 +44,7 @@ export default function Home() {
         <h1 className='font-extrabold text-xl'>See Our Products</h1>
         <div className='flex flex-wrap gap-4 bg-slate-900 p-4 rounded-2xl'>
           {products?.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard onClick={() => handleProduct(product)} key={product.id} product={product} />
           ))}
         </div>
       </section>
@@ -45,7 +56,7 @@ export default function Home() {
           <h1 className='font-extrabold text-xl'>— {category.toUpperCase()}</h1>
           <div className='flex gap-4 overflow-x-scroll bg-slate-900 p-4 rounded-2xl'>
             {products?.map((product) => (
-              <ShortProductCard key={product.id} product={product} />
+              <ShortProductCard onClick={() => handleProduct(product)} key={product.id} product={product} />
             ))}
           </div>
 
@@ -103,6 +114,12 @@ export default function Home() {
             > Bruno Filho</a>
         </div>
       </footer>
+
+      <ProductDialog 
+        isOpen={dialogOpen} 
+        onOpenChange={setDialogOpen} 
+        product={selectedProduct} 
+      />
     </div>
   )
 }

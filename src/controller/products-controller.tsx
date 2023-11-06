@@ -20,7 +20,7 @@ async function getByCategory({ category = "men's clothing" }: GetProductsProps) 
 }
 
 async function getById({ id }: { id: number }) {
-  const response: Product[] = await fetch(`https://fakestoreapi.com/products/${id}`)
+  const response: Product = await fetch(`https://fakestoreapi.com/products/${id}`)
   .then(res=>res.json())
 
   return response
