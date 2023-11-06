@@ -1,15 +1,28 @@
+'use client'
 
 import { Header } from '@/components/header'
 import { ProductCard } from '@/components/products-card'
 import { ShortProductCard } from '@/components/short-products-card'
+import { buttonVariants } from '@/components/ui/button'
 import { productsController } from '@/controller/products-controller'
+import { cn } from '@/lib/utils'
+import { useQuery } from '@tanstack/react-query'
+import Link from 'next/link'
 
-export default async function Home() {
-  const products = await productsController.get({
-    limit: 10
+export default function Home() {
+  const { data: products } = useQuery({
+    queryKey: ['products'],
+    queryFn: () =>
+    productsController.get({
+      limit: 10
+    }),
   })
 
-  const categories = await productsController.getCategories()
+  const { data: categories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () =>
+    productsController.getCategories(),
+  })
   
   return (
     <div className="flex container min-h-screen flex-col items-center justify-between gap-8">
@@ -24,7 +37,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {categories?.map((category) => (
+      {categories?.slice(0, 2).map((category) => (
         <section key={category} className='flex flex-col p-4 gap-4 w-full'>
           <h1 className='font-extrabold text-xl'>— {category.toUpperCase()}</h1>
           <div className='flex gap-4 overflow-x-scroll'>
@@ -32,8 +45,14 @@ export default async function Home() {
               <ShortProductCard key={product.id} product={product} />
             ))}
           </div>
+
+          <Link href={`/category/${category}`}
+            className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'w-[200px]')}
+          >
+            See All Products
+          </Link> 
         </section>  
-      ))}      
+      ))}  
 
       <footer
         className="flex w-full flex-col items-center bg-gray-900 text-center text-white rounded-t-2xl">
@@ -76,7 +95,8 @@ export default async function Home() {
           © 2023 Copyright: 
           <a
             className="text-neutral-800 dark:text-neutral-400"
-            href="https://tw-elements.com/"
+            href="https://github.com/brunofilho1"
+            target='_blank'
             > Bruno Filho</a>
         </div>
       </footer>
