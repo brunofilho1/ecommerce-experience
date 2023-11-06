@@ -4,20 +4,22 @@ import { ProductCard } from '@/components/products-card'
 import { productsController } from '@/controller/products-controller'
 
 export default async function Home() {
-  const products = await productsController.get()
+  const products = await productsController.get({
+    limit: 10
+  })
   
   return (
     <div className="flex container min-h-screen flex-col items-center justify-between gap-8">
       <Header />
 
-      <main className="flex flex-col gap-4">
+      <section className="flex flex-col gap-4">
         <h1 className='font-extrabold text-xl'>See Our Products</h1>
         <div className='flex flex-wrap gap-4'>
           {products?.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-      </main>
+      </section>
 
     <footer
       className="flex w-full flex-col items-center bg-gray-900 text-center text-white rounded-t-2xl">
