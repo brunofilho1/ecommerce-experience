@@ -12,6 +12,8 @@ import { HeartIcon, ShoppingCartIcon } from "lucide-react"
 import { Dispatch, SetStateAction } from "react"
 import { Badge } from "./ui/badge"
 import { Product } from "@/model/products"
+import { useAtom } from "jotai"
+import { cartProducts } from "@/atoms/cart.atom"
 
 interface ProductDialogProps {
   isOpen: boolean
@@ -20,6 +22,16 @@ interface ProductDialogProps {
 }
 
 export function ProductDialog({ isOpen, onOpenChange, product }: ProductDialogProps) {
+  const [cartItems, setCartItems] = useAtom(cartProducts)
+
+  const handleAddToCart = () => {
+    setCartItems(prevState => {
+      return [
+        ...prevState!,
+        product
+      ]
+    })
+  }
 
   if(!product) return null
 
@@ -45,9 +57,10 @@ export function ProductDialog({ isOpen, onOpenChange, product }: ProductDialogPr
               <HeartIcon />            
             </Button>
             
-            <Button type="submit" className="space-x-2">
+            <Button onClick={handleAddToCart} type="submit" className="space-x-2">
               <ShoppingCartIcon />
               <span>Add to Cart</span>
+              {cartItems?.find((p) => p.id === product.id) && "(1)"}
             </Button>
           </div>
         </div>

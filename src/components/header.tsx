@@ -18,6 +18,7 @@ import { UserNav } from "./user-nav"
 import { useQuery } from "@tanstack/react-query"
 import { productsController } from "@/controller/products-controller"
 import { Button } from "./ui/button"
+import { CartPopover } from "./cart-popover"
 
 export function Header() {
   const { data: categories } = useQuery({
@@ -91,9 +92,7 @@ export function Header() {
         <HeartIcon size={20} />
       </Button>
 
-      <Button variant='ghost' size='icon'>
-        <ShoppingCartIcon size={20} />
-      </Button>
+      <CartPopover />
 
       <UserNav />
     </div>
