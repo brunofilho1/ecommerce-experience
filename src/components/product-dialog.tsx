@@ -13,12 +13,13 @@ import { Dispatch, SetStateAction } from "react"
 import { Badge } from "./ui/badge"
 import { Product } from "@/model/products"
 import { useAtom } from "jotai"
-import { cartProducts } from "@/atoms/cart.atom"
+import { CartProduct, cartProducts } from "@/atoms/cart.atom"
+import toast from "react-hot-toast"
 
 interface ProductDialogProps {
   isOpen: boolean
   onOpenChange: Dispatch<SetStateAction<boolean>>
-  product: Product
+  product: CartProduct
 }
 
 export function ProductDialog({ isOpen, onOpenChange, product }: ProductDialogProps) {
@@ -26,12 +27,25 @@ export function ProductDialog({ isOpen, onOpenChange, product }: ProductDialogPr
 
   const handleAddToCart = () => {
     setCartItems(prevState => {
-      return [
-        ...prevState!,
-        product
-      ]
-    })
-  }
+      const existingProduct = prevState.find(item => item.id === product?.id);
+
+      toast.success('Product has been added to cart!')
+
+      if (existingProduct) {
+        const updatedData = prevState.map(item => {
+          if (item.id === product.id) {
+            return { ...item, quantity: item.quantity! + 1 };
+          }
+          return item
+        });
+    
+        return updatedData
+      } else {
+        const newItem: CartProduct = { ...product, quantity: 1 };
+        return [...prevState, newItem];
+      }
+    });
+  };
 
   if(!product) return null
 
@@ -57,10 +71,10 @@ export function ProductDialog({ isOpen, onOpenChange, product }: ProductDialogPr
               <HeartIcon />            
             </Button>
             
-            <Button onClick={handleAddToCart} type="submit" className="space-x-2">
+            <Button onClick={handleAddToCart} type="button" className="space-x-2">
               <ShoppingCartIcon />
               <span>Add to Cart</span>
-              {cartItems?.find((p) => p.id === product.id) && "(1)"}
+              {`(${cartItems?.find((p) => p.id === product.id)?.quantity || 0})`}
             </Button>
           </div>
         </div>
