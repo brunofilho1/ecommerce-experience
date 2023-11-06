@@ -31,7 +31,6 @@ export function Header() {
     <header className="w-full h-16 items-center justify-between font-mono text-sm lg:flex px-4 rounded-b-2xl">
       <Link href='/' className='font-bold text-xl flex items-center gap-2'>
         <StoreIcon size={20} />
-        E-commerce
       </Link>
 
       <NavigationMenu>
