@@ -1,20 +1,14 @@
 
+import { Header } from '@/components/nav-bar'
 import { ProductCard } from '@/components/products-card'
-import { UserNav } from '@/components/user-nav'
 import { productsController } from '@/controller/products-controller'
-import Link from 'next/link'
 
 export default async function Home() {
   const products = await productsController.get()
   
   return (
     <div className="flex container min-h-screen flex-col items-center justify-between gap-8">
-      <header className="w-full h-16 items-center justify-between font-mono text-sm lg:flex bg-accent px-4">
-        <Link href='/' className='font-bold text-xl'>
-          E-commerce
-        </Link>
-        <UserNav />
-      </header>
+      <Header />
 
       <main className="flex flex-col gap-4">
         <h1 className='font-extrabold text-xl'>See Our Products</h1>

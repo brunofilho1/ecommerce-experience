@@ -15,7 +15,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="w-[350px] flex flex-col justify-between hover:bg-accent transition-all cursor-pointer">
+    <Card className="w-[340px] flex flex-col justify-between hover:bg-accent transition-all cursor-pointer">
       <CardHeader>
         <CardTitle>{product.title}</CardTitle>        
       </CardHeader>
