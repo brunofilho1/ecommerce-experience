@@ -50,4 +50,4 @@ pnpm dev
 
 ## 🌐 Live preview
 
-<a src="https://brunofilho1.github.io/minhas-contas/" target="_blank">https://brunofilho1.github.io/minhas-contas/</a>
+<a src="https://ecommerce-experience.vercel.app/" target="_blank">https://ecommerce-experience.vercel.app/</a>
