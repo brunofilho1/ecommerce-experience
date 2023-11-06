@@ -4,6 +4,7 @@ import { Header } from '@/components/header'
 import { ProductCard } from '@/components/products-card'
 import { ShortProductCard } from '@/components/short-products-card'
 import { buttonVariants } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { productsController } from '@/controller/products-controller'
 import { cn } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
@@ -30,17 +31,19 @@ export default function Home() {
 
       <section className="flex flex-col gap-4">
         <h1 className='font-extrabold text-xl'>See Our Products</h1>
-        <div className='flex flex-wrap gap-4'>
+        <div className='flex flex-wrap gap-4 bg-slate-900 p-4 rounded-2xl'>
           {products?.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </section>
 
+      <Separator />
+
       {categories?.slice(0, 2).map((category) => (
         <section key={category} className='flex flex-col p-4 gap-4 w-full'>
           <h1 className='font-extrabold text-xl'>— {category.toUpperCase()}</h1>
-          <div className='flex gap-4 overflow-x-scroll'>
+          <div className='flex gap-4 overflow-x-scroll bg-slate-900 p-4 rounded-2xl'>
             {products?.map((product) => (
               <ShortProductCard key={product.id} product={product} />
             ))}
