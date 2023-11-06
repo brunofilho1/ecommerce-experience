@@ -27,7 +27,7 @@ async function getById({ id }: { id: number }) {
 }
 
 async function getCategories() {
-  const response: Categories = await fetch('https://fakestoreapi.com/products/categories')
+  const response: Categories[] = await fetch('https://fakestoreapi.com/products/categories')
   .then(res=>res.json())
 
   return response

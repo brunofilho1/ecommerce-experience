@@ -21,7 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <CardTitle title={product.title}>{product.title.substring(0, 20)}...</CardTitle>        
       </CardHeader>
       <CardContent className="flex items-center">
-        <img src={product.image} alt="Product Image" className="rounded-2xl m-auto object-cover h-[120px] w-full" />
+        <img src={product.image} alt="Product Image" className="rounded-2xl m-auto object-cover max-h-[120px] h-full w-full" />
       </CardContent>
       <CardFooter className="text-emerald-700 justify-end">
         ${product.price}
