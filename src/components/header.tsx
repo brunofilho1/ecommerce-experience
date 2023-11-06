@@ -56,7 +56,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function Header() {
   return (
-    <header className="w-full h-16 items-center justify-between font-mono text-sm lg:flex bg-accent px-4">
+    <header className="w-full h-16 items-center justify-between font-mono text-sm lg:flex bg-accent px-4 rounded-b-2xl">
     <Link href='/' className='font-bold text-xl flex items-center gap-2'>
       <StoreIcon size={20} />
       E-commerce
@@ -73,7 +73,6 @@ export function Header() {
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                     href="/"
                   >
-                    <StoreIcon size={20} />
                     <div className="mb-2 mt-4 text-lg font-medium">
                       shadcn/ui
                     </div>

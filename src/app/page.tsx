@@ -1,5 +1,5 @@
 
-import { Header } from '@/components/nav-bar'
+import { Header } from '@/components/header'
 import { ProductCard } from '@/components/products-card'
 import { productsController } from '@/controller/products-controller'
 
@@ -20,7 +20,7 @@ export default async function Home() {
       </main>
 
     <footer
-      className="flex w-full flex-col items-center bg-gray-900 text-center text-white">
+      className="flex w-full flex-col items-center bg-gray-900 text-center text-white rounded-t-2xl">
       <div className="container pt-9">
         <div className="mb-9 flex justify-center">
           <a href="#!" className="mr-9 text-neutral-800 dark:text-neutral-200">
